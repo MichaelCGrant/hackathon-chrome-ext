@@ -1,0 +1,13 @@
+{
+  "name": "Border Creator",
+  "description": "Create borders for testing CSS!",
+  "version": "0.1",
+  "author": "Mark Alexander and Michael Grant",
+  "manifest_version": 3,
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html"
+  }
+}
