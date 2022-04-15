@@ -1,16 +1,18 @@
 const button = document.querySelector('#start-button');
 
-button.onclick = () => f();
+button.onclick = () => {
+  chrome.tabs.query({active: true}, function(tabs) {
+    const tab = tabs[0];
+    tab_title = tab.title;
+    chrome.scripting.executeScript({
+      target: {tabId: tab.id, allFrames: true},
+      func: f1
+    });
+  });
+};
 
-const tab_title = '';
-function display_h1 (results){
-  h1=results;
-  document.querySelector("#id1").innerHTML = "<p>tab title: " + tab_title + "</p><p>dom h1: " + h1 + "</p>";
+let tab_title = '';
+function f1 (){
+  document.querySelector('body > div.L3eUgb > div.o3j99.LLD4me.yr19Zb.LS8OJ > div > img').remove();
+  button.innerText = 'test';
 }
-chrome.tabs.query({active: true}, function(tabs) {
-  const tab = tabs[0];
-  tab_title = tab.title;
-  chrome.tabs.executeScript(tab.id, {
-    code: 'document.querySelector("h1").textContent'
-  }, display_h1);
-});
