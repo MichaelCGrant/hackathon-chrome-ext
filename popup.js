@@ -1,18 +1,23 @@
 const button = document.querySelector('#start-button');
 
+function receivedResponse(response) {
+  const topLine = document.createElement('div');
+  topLine.innerText = 'Identifier: Color';
+  document.body.appendChild(topLine);
+  response.forEach((el) => {
+    const legend = document.createElement('div');
+    legend.innerText = `${el.id}: ${el.color}`; // Should show the actual color and not just hex code
+    document.body.appendChild(legend);
+  })
+}
+
 button.onclick = () => {
   chrome.tabs.query({active: true}, function(tabs) {
     const tab = tabs[0];
-    tab_title = tab.title;
-    chrome.scripting.executeScript({
-      target: {tabId: tab.id, allFrames: true},
-      func: f1
-    });
+    chrome.tabs.sendMessage(
+      tabId = tab.id,
+      message = {pressed: true},
+      callback = receivedResponse
+    )
   });
 };
-
-let tab_title = '';
-function f1 (){
-  document.querySelector('body > div.L3eUgb > div.o3j99.LLD4me.yr19Zb.LS8OJ > div > img').remove();
-  button.innerText = 'test';
-}
