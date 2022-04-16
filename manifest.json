@@ -5,7 +5,8 @@
   "author": "Mark Alexander and Michael Grant",
   "manifest_version": 3,
   "permissions": [
-    "tabs", "scripting"
+    "activeTab",
+    "scripting"
   ],
   "background": {
     "service_worker": "background.js"
